@@ -34,21 +34,11 @@ This project allows users to query Peruvian provinces or cities using natural la
 - query should be accepted from the CLI rather then hardcoding in the codebase
 
 
-## Project Structure
-
-geo_agent/
-├─ src/
-│ ├─ tools.py # All CrewAI tools (geocode, buffer, filter, render map)
-│ ├─ tasks.py # CrewAI tasks and agents
-│ ├─ main.py # Command line interface entry point
-│ ├─ data/ # Dataset (e.g., mining concessions shapefile)
-│ └─ output/ # Output folder for JSON & HTML
-├─ pyproject.toml
-└─ README.md
-
-Crew_AI Setup:
+## Crew_AI Setup:
 
 1. Open API Model setup is needed in enviornment variables to run this project.
+
+
 ## Installation
 
 1. Clone the repository.
