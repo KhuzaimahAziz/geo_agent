@@ -6,7 +6,6 @@ from shapely.ops import transform
 import folium
 from geopy.geocoders import Nominatim
 from crewai.tools import tool
-from datetime import datetime
 
 DATASET_PATH = "data\CMI_WGS84_17S\CatastroMinero_WGS84_17S_300126.shp"  
 dataset_gdf = gpd.read_file(DATASET_PATH)  
@@ -79,11 +78,6 @@ def buffer_point_tool(geocode_json: str) -> dict:
     Returns:
     - str: A GeoJSON FeatureCollection (JSON string) representing the circular buffer polygon.
     """
-    import json
-    from shapely.geometry import Point, mapping
-    from shapely.ops import transform
-    import pyproj
-
     geocode = json.loads(geocode_json)
     lat = float(geocode["latitude"])
     lon = float(geocode["longitude"])
@@ -146,12 +140,10 @@ def filter_dataset_tool(json_buffer: str):
             # Spatial intersection
             filtered = dataset[dataset.geometry.intersects(buffer_gdf.geometry.iloc[0])]
 
-            # Convert all non-geometry columns to string (GeoJSON-safe)
             for col in filtered.columns:
                 if col != "geometry":
                     filtered[col] = filtered[col].astype(str)
 
-            # Return GeoJSON
             return filtered.to_json()
 
     except Exception as e:
@@ -176,11 +168,6 @@ def render_map_tool(
     Returns:
     - str: Path to the saved HTML file
     """
-    import json
-    import os
-    import folium
-
-    # Parse inputs
     center = json.loads(geocode_json, strict=False)
     buffer_fc = json.loads(buffer_geojson, strict=False)
     matches_fc = json.loads(matches_geojson, strict=False)
@@ -188,25 +175,21 @@ def render_map_tool(
     lat = float(center["latitude"])
     lon = float(center["longitude"])
 
-    # ---- filename logic (NEW) ----
     place_name = center.get("display_name", "map")
     safe_name = place_name.lower().replace(" ", "_")
     filename = f"{safe_name}_map.html"
     os.makedirs(output_dir, exist_ok=True)
     output_file = os.path.join(output_dir, filename)
-    # --------------------------------
 
-    # Initialize map
     m = folium.Map(location=[lat, lon], zoom_start=8)
 
-    # Center marker
+
     folium.Marker(
         location=[lat, lon],
         popup=place_name,
         icon=folium.Icon(color="red", icon="info-sign"),
     ).add_to(m)
 
-    # Buffer layer
     folium.GeoJson(
         buffer_fc,
         name="Search Buffer",
@@ -217,7 +200,6 @@ def render_map_tool(
         },
     ).add_to(m)
 
-    # Mining concessions layer (only if present)
     if matches_fc.get("features"):
         folium.GeoJson(
             matches_fc,
