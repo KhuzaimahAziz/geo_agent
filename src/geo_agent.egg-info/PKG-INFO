@@ -1,0 +1,98 @@
+Metadata-Version: 2.4
+Name: geo-agent
+Version: 0.1.0
+Summary: LLM-powered geospatial agent 
+Author: Khuzaima Aziz
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: crewai
+Requires-Dist: geopandas
+Requires-Dist: shapely
+Requires-Dist: pyproj
+Requires-Dist: pydantic
+Requires-Dist: folium
+Requires-Dist: openai
+Requires-Dist: mcp[cli]
+Requires-Dist: matplotlib>=3.10.8
+
+# Geo Agent — AI-Powered Map Query System
+
+A small AI-powered map query system: ask natural-language questions about places and see results on a Folium map. The flow is **user query → LLM reasoning (tool calls) → MCP geo tools → structured results → map rendering**.
+
+## Features
+
+- **LLM tool calling and multi-step reasoning**: OpenAI (e.g. `gpt-4o-mini`) with function/tool calling.
+- **MCP tool integration**: Geo tools exposed as MCP; the agent calls them via MCP client.
+- **Three main tools**:
+  - **geocode_address(address)** – Convert address/place name to coordinates (Nominatim + mock). Output: `{ latitude, longitude, display_name, address }`. Validation: lat ∈ [-90, 90], lon ∈ [-180, 180].
+  - **retrieve_geodata_layer(layer_type, bbox, data_source)** – Get features in a bbox as GeoJSON FeatureCollection. bbox: `{ min_lat, min_lon, max_lat, max_lon }`. Validation: valid bbox, supported layer type (e.g. `places`, `mining_cadastre`).
+  - **buffer_point(latitude, longitude, radius_km)** – Buffer zone around a point (Shapely). Output: GeoJSON Polygon.
+- **Legacy tools**: search_places, get_places_in_bbox, get_place_by_id (shapefile-backed).
+- **Map visualization**: Folium HTML map of returned places/coordinates.
+
+## Setup
+
+1. **Clone / open the project** and create a virtual environment (or use the existing `geo-agent` venv).
+
+2. **Install dependencies** (from project root):
+
+   ```bash
+   pip install -e .
+   ```
+
+   This installs `geo-agent` and its dependencies (geopandas, shapely, folium, openai, mcp, etc.).
+
+3. **Environment variables**:
+
+   - **`OPENAI_API_KEY`** (required for the agent): Your OpenAI API key.
+   - **`GEO_AGENT_SHP_PATH`** (optional): Path to the shapefile. Default: `data/CMI_WGS84_17S/CatastroMinero_WGS84_17S_300126.shp`.
+   - **`GEO_AGENT_OUTPUT_DIR`** (optional): Directory for map HTML output. Default: `output/`.
+   - **`GEO_AGENT_MODEL`** (optional): OpenAI model name. Default: `gpt-4o-mini`.
+
+## Usage
+
+### Query (full flow: agent + map)
+
+```bash
+# From project root, with venv activated
+python -m geo_agent.main "Where are mining concessions near La Paz?"
+# or after pip install -e .
+geo-agent "Show me the first 10 places in the dataset"
+```
+
+Options:
+
+- **`--open`**: Open the map in the browser after rendering.
+- **`--no-map`**: Run only the agent and print the answer (no map).
+- **`--serve`**: Run only the MCP server (see below).
+
+### MCP server only (for Cursor or other MCP clients)
+
+```bash
+python -m geo_agent.mcp_server
+# or
+geo-agent --serve
+```
+
+This runs the geo MCP server over stdio. You can add it to Cursor or another MCP client to call `geocode_address`, `retrieve_geodata_layer`, `buffer_point`, and legacy tools from the IDE.
+
+## Example queries
+
+- "Where is La Paz? Geocode it and show on a map."
+- "Get geodata for mining_cadastre in bbox min_lat -17, min_lon -69, max_lat -16, max_lon -67."
+- "Create a 10 km buffer around coordinates -16.5, -68.1."
+- "List the first 20 places." / "Search for places containing 'mineral'."
+
+## Architecture (summary)
+
+- **Geocoding** (`geo_agent.geocode`): Nominatim + mock → `GeocodeResult` (validated lat/lon).
+- **Geo tools** (`geo_agent.geo_tools`): `retrieve_geodata_layer` (GeoJSON FeatureCollection), `buffer_point` (Shapely → GeoJSON Polygon). Validation: bbox, layer type, radius_km > 0.
+- **Data layer** (`geo_agent.data`): Shapefile (WGS84), search / bbox / by_id → `Place` list.
+- **MCP server** (`geo_agent.mcp_server`): Exposes `geocode_address`, `retrieve_geodata_layer`, `buffer_point`, plus legacy `search_places`, `get_places_in_bbox`, `get_place_by_id`.
+- **Agent** (`geo_agent.agent`): OpenAI loop; gets tool definitions from MCP, executes tools via MCP client, returns final message and places for the map.
+- **Map** (`geo_agent.map`): Renders a list of places to a Folium HTML file.
+- **CLI** (`geo_agent.main`): Parses args, runs agent, renders map, prints path.
+
+## License
+
+See project license.

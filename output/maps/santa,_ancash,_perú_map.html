@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_87c86f73486cf183727085d281e1c910 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    
+                    <style>
+                        .foliumtooltip {
+                            
+                        }
+                       .foliumtooltip table{
+                            margin: auto;
+                        }
+                        .foliumtooltip tr{
+                            text-align: left;
+                        }
+                        .foliumtooltip th{
+                            padding: 2px; padding-right: 8px;
+                        }
+                    </style>
+            
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_87c86f73486cf183727085d281e1c910" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_87c86f73486cf183727085d281e1c910 = L.map(
+                "map_87c86f73486cf183727085d281e1c910",
+                {
+                    center: [-8.9565931, -78.2678528],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 8,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_840c0b1a59bdfec5c6ccac236b16feff = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_840c0b1a59bdfec5c6ccac236b16feff.addTo(map_87c86f73486cf183727085d281e1c910);
+        
+    
+            var marker_8d6bb763acb57811717e4422e20efd48 = L.marker(
+                [-8.9565931, -78.2678528],
+                {
+}
+            ).addTo(map_87c86f73486cf183727085d281e1c910);
+        
+    
+            var icon_9e71922cb48bf4c6d462cc83c0da99ea = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c776413fbf7e0e63f3543b53bb76744a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_0e25c15fa7d50c2c3bdad9bb4a71537e = $(`<div id="html_0e25c15fa7d50c2c3bdad9bb4a71537e" style="width: 100.0%; height: 100.0%;">Santa, Ancash, Perú</div>`)[0];
+                popup_c776413fbf7e0e63f3543b53bb76744a.setContent(html_0e25c15fa7d50c2c3bdad9bb4a71537e);
+            
+        
+
+        marker_8d6bb763acb57811717e4422e20efd48.bindPopup(popup_c776413fbf7e0e63f3543b53bb76744a)
+        ;
+
+        
+    
+    
+                marker_8d6bb763acb57811717e4422e20efd48.setIcon(icon_9e71922cb48bf4c6d462cc83c0da99ea);
+            
+    
+        function geo_json_b565a2b37b55d129a2b9be7684347e3e_styler(feature) {
+            switch(feature.id) {
+                default:
+                    return {"color": "blue", "fillOpacity": 0.15, "weight": 2};
+            }
+        }
+
+        function geo_json_b565a2b37b55d129a2b9be7684347e3e_onEachFeature(feature, layer) {
+
+            layer.on({
+            });
+        };
+        var geo_json_b565a2b37b55d129a2b9be7684347e3e = L.geoJson(null, {
+                onEachFeature: geo_json_b565a2b37b55d129a2b9be7684347e3e_onEachFeature,
+            
+                style: geo_json_b565a2b37b55d129a2b9be7684347e3e_styler,
+            ...{
+}
+        });
+
+        function geo_json_b565a2b37b55d129a2b9be7684347e3e_add (data) {
+            geo_json_b565a2b37b55d129a2b9be7684347e3e
+                .addData(data);
+        }
+            geo_json_b565a2b37b55d129a2b9be7684347e3e_add({"features": [{"geometry": {"coordinates": [[[-77.90412081640419, -8.956414378156836], [-77.90583716857424, -8.991864667161535], [-77.91104084247573, -9.026976882226263], [-77.91968270753141, -9.061412742737996], [-77.93168045262436, -9.094840389891747], [-77.9469193427041, -9.126937590726438], [-77.96525329142005, -9.157394852830976], [-77.98650624079855, -9.185918419315554], [-78.01047383584019, -9.212233114666668], [-78.03692537883751, -9.236085013430179], [-78.06560604523511, -9.257243905287973], [-78.09623934001829, -9.275505531999201], [-78.12852977095949, -9.290693573852122], [-78.1621657126194, -9.302661365698068], [-78.1968224328257, -9.311293325291889], [-78.23216525148008, -9.316506079516238], [-78.2678528, -9.318249277089636], [-78.30354034851993, -9.316506079516238], [-78.33888316717432, -9.311293325291889], [-78.37353988738062, -9.302661365698068], [-78.40717582904051, -9.290693573852122], [-78.43946625998173, -9.275505531999201], [-78.4700995547649, -9.257243905287973], [-78.4987802211625, -9.236085013430179], [-78.52523176415983, -9.212233114666668], [-78.54919935920147, -9.185918419315554], [-78.57045230857995, -9.157394852830976], [-78.5887862572959, -9.126937590726438], [-78.60402514737564, -9.094840389891747], [-78.61602289246859, -9.061412742737996], [-78.62466475752427, -9.026976882226263], [-78.62986843142578, -8.991864667161535], [-78.63158478359583, -8.956414378156836], [-78.62979829875677, -8.920967455390233], [-78.62452718718315, -8.885865209688934], [-78.61582317090661, -8.85144553858245], [-78.60377094938872, -8.818039678776191], [-78.58848735114618, -8.785969026014904], [-78.57012018067141, -8.755542052541315], [-78.54884677272358, -8.72705135132031], [-78.52487226865094, -8.700770834905299], [-78.49842763183341, -8.676953115284851], [-78.46976742158802, -8.65582708928], [-78.43916734694858, -8.637595752081761], [-78.40692162360303, -8.622434259342691], [-78.3733401589352, -8.610488255884688], [-78.33874559156483, -8.601872486578161], [-78.30347021299971, -8.596669702306604], [-78.2678528, -8.594929871178259], [-78.2322353870003, -8.596669702306604], [-78.19696000843518, -8.601872486578158], [-78.16236544106481, -8.610488255884686], [-78.12878397639697, -8.622434259342693], [-78.09653825305143, -8.63759575208176], [-78.065938178412, -8.65582708928], [-78.03727796816659, -8.676953115284851], [-78.01083333134908, -8.700770834905299], [-77.98685882727644, -8.72705135132031], [-77.9655854193286, -8.755542052541315], [-77.94721824885383, -8.785969026014907], [-77.93193465061128, -8.818039678776191], [-77.9198824290934, -8.85144553858245], [-77.91117841281687, -8.885865209688934], [-77.90590730124325, -8.920967455390233], [-77.90412081640419, -8.956414378156836]]], "type": "Polygon"}, "id": "0", "properties": {"radius_km": 40.0}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+            geo_json_b565a2b37b55d129a2b9be7684347e3e.addTo(map_87c86f73486cf183727085d281e1c910);
+        
+    
+        function geo_json_218553bd6aab68d1e2511cccca80309a_styler(feature) {
+            switch(feature.id) {
+                default:
+                    return {"color": "green", "fillColor": "green", "fillOpacity": 0.5, "weight": 2};
+            }
+        }
+
+        function geo_json_218553bd6aab68d1e2511cccca80309a_onEachFeature(feature, layer) {
+
+            layer.on({
+            });
+        };
+        var geo_json_218553bd6aab68d1e2511cccca80309a = L.geoJson(null, {
+                onEachFeature: geo_json_218553bd6aab68d1e2511cccca80309a_onEachFeature,
+            
+                style: geo_json_218553bd6aab68d1e2511cccca80309a_styler,
+            ...{
+}
+        });
+
+        function geo_json_218553bd6aab68d1e2511cccca80309a_add (data) {
+            geo_json_218553bd6aab68d1e2511cccca80309a
+                .addData(data);
+        }
+            geo_json_218553bd6aab68d1e2511cccca80309a_add({"features": [{"geometry": {"coordinates": [[[-78.41869784817796, -8.757348677297784], [-78.41857302741307, -8.775420609487584], [-78.43673955787928, -8.775544477882526], [-78.43686350258412, -8.75747228673694], [-78.41869784817796, -8.757348677297784]]], "type": "Polygon"}, "id": "7", "properties": {"CARTA": "18-G", "CODIGOU": "010309921", "CONCESION": "WINIBEL", "DEPA": "None", "DISTRI": "None", "D_ESTADO": "D.M. Titulado D.L. 708", "FEC_DENU": "2021-12-29", "HASDATUM": "400.0", "LEYENDA": "TITULADO", "PROVI": "None", "SUSTANCIA": "M", "TIT_CONCES": "S.M.R.L. WINIBEL", "ZONA": "17"}, "type": "Feature"}, {"geometry": {"coordinates": [[[-78.03368681010768, -9.197164934016792], [-78.03346058450771, -9.224263299635837], [-78.04255204466342, -9.224338222171943], [-78.04270247807813, -9.206272501029668], [-78.05179355434318, -9.2063470456625], [-78.05186842563661, -9.197314103037446], [-78.03368681010768, -9.197164934016792]]], "type": "Polygon"}, "id": "80", "properties": {"CARTA": "19-G", "CODIGOU": "110002323", "CONCESION": "ISQUIHUANCA", "DEPA": "None", "DISTRI": "None", "D_ESTADO": "D.M. Titulado D.L. 708", "FEC_DENU": "2023-04-25", "HASDATUM": "400.0", "LEYENDA": "TITULADO", "PROVI": "None", "SUSTANCIA": "M", "TIT_CONCES": "J.C. E.I.R.L.", "ZONA": "17"}, "type": "Feature"}, {"geometry": {"coordinates": [[[-78.27272043524297, -8.846677246419496], [-78.27265385075816, -8.855712098035221], [-78.28173796647656, -8.855778246791594], [-78.28160502838905, -8.873848072536836], [-78.29977435681552, -8.873979982679641], [-78.29984041790216, -8.864944935844628], [-78.29075594017202, -8.864879159107423], [-78.2908882948953, -8.846809187056893], [-78.27272043524297, -8.846677246419496]]], "type": "Polygon"}, "id": "84", "properties": {"CARTA": "18-G", "CODIGOU": "010049221", "CONCESION": "ACUARELA 1", "DEPA": "None", "DISTRI": "None", "D_ESTADO": "D.M. Titulado D.L. 708", "FEC_DENU": "2021-03-09", "HASDATUM": "500.0", "LEYENDA": "TITULADO", "PROVI": "None", "SUSTANCIA": "M", "TIT_CONCES": "DRUK COMPA\f3\u000b1IA MINERA S.A.C.", "ZONA": "17"}, "type": "Feature"}, {"geometry": {"coordinates": [[[-78.26377000977223, -8.828541366128137], [-78.26370334598522, -8.837576158678392], [-78.27278694905878, -8.837642389958498], [-78.27285339221397, -8.828607528657058], [-78.26377000977223, -8.828541366128137]]], "type": "Polygon"}, "id": "85", "properties": {"CARTA": "18-G", "CODIGOU": "010049321", "CONCESION": "ACUARELA 2", "DEPA": "None", "DISTRI": "None", "D_ESTADO": "D.M. Titulado D.L. 708", "FEC_DENU": "2021-03-09", "HASDATUM": "100.0", "LEYENDA": "TITULADO", "PROVI": "None", "SUSTANCIA": "M", "TIT_CONCES": "DRUK COMPA\f3\u000b1IA MINERA S.A.C.", "ZONA": "17"}, "type": "Feature"}, {"geometry": {"coordinates": [[[-78.24600458975847, -8.774200355281838], [-78.24580434475824, -8.801304390902786], [-78.23672183609273, -8.80123777865275], [-78.23658754274717, -8.819306972734388], [-78.24567049145304, -8.819373723837991], [-78.2457374537751, -8.810339059788163], [-78.26390312469431, -8.810471766516052], [-78.26410226557377, -8.783367330891592], [-78.25502005361801, -8.78330129386625], [-78.2550865114269, -8.77426654131563], [-78.24600458975847, -8.774200355281838]]], "type": "Polygon"}, "id": "87", "properties": {"CARTA": "18-G", "CODIGOU": "010049421", "CONCESION": "ACUARELA 3", "DEPA": "None", "DISTRI": "None", "D_ESTADO": "D.M. Titulado D.L. 708", "FEC_DENU": "2021-03-09", "HASDATUM": "900.0", "LEYENDA": "TITULADO", "PROVI": "None", "SUSTANCIA": "M", "TIT_CONCES": "DRUK COMPA\f3\u000b1IA MINERA S.A.C.", "ZONA": "17"}, "type": "Feature"}, {"geometry": {"coordinates": [[[-78.37232567095451, -8.892569954004697], [-78.37226117857006, -8.901605522783331], [-78.38134716577369, -8.901669580764581], [-78.38141143578393, -8.892633945948637], [-78.37232567095451, -8.892569954004697]]], "type": "Polygon"}, "id": "97", "properties": {"CARTA": "18-G", "CODIGOU": "110004924", "CONCESION": "AZUMI 2024", "DEPA": "ANCASH", "DISTRI": "CHIMBOTE", "D_ESTADO": "D.M. Titulado D.L. 708", "FEC_DENU": "2024-07-02", "HASDATUM": "100.0", "LEYENDA": "TITULADO", "PROVI": "SANTA", "SUSTANCIA": "N", "TIT_CONCES": "SEVIC CONTRATISTAS E.I.R.L.", "ZONA": "17"}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+    geo_json_218553bd6aab68d1e2511cccca80309a.bindTooltip(
+    function(layer){
+    let div = L.DomUtil.create('div');
+    
+    let handleObject = feature => {
+        if (feature === null) {
+            return '';
+        } else if (typeof(feature)=='object') {
+            return JSON.stringify(feature);
+        } else {
+            return feature;
+        }
+    }
+    let fields = ["CONCESION", "HASDATUM"];
+    let aliases = ["Concession", "Area (ha)"];
+    let table = '<table>' +
+        String(
+        fields.map(
+        (v,i)=>
+        `<tr>
+            <th>${aliases[i]}</th>
+            
+            <td>${handleObject(layer.feature.properties[v])}</td>
+        </tr>`).join(''))
+    +'</table>';
+    div.innerHTML=table;
+    
+    return div
+    }
+    ,{
+  "sticky": true,
+  "className": "foliumtooltip",
+});
+                     
+    
+            geo_json_218553bd6aab68d1e2511cccca80309a.addTo(map_87c86f73486cf183727085d281e1c910);
+        
+    
+            var layer_control_331e53939a0b7431d5c0071d59f698ba_layers = {
+                base_layers : {
+                    "openstreetmap" : tile_layer_840c0b1a59bdfec5c6ccac236b16feff,
+                },
+                overlays :  {
+                    "Search Buffer" : geo_json_b565a2b37b55d129a2b9be7684347e3e,
+                    "Mining Concessions" : geo_json_218553bd6aab68d1e2511cccca80309a,
+                },
+            };
+            let layer_control_331e53939a0b7431d5c0071d59f698ba = L.control.layers(
+                layer_control_331e53939a0b7431d5c0071d59f698ba_layers.base_layers,
+                layer_control_331e53939a0b7431d5c0071d59f698ba_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": true,
+  "autoZIndex": true,
+}
+            ).addTo(map_87c86f73486cf183727085d281e1c910);
+
+        
+</script>
+</html>

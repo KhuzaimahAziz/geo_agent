@@ -1,0 +1,9 @@
+crewai
+geopandas
+shapely
+pyproj
+pydantic
+folium
+openai
+mcp[cli]
+matplotlib>=3.10.8

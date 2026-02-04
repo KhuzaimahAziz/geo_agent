@@ -1,0 +1,25 @@
+[project]
+name = "geo-agent"
+version = "0.1.0"
+description = "LLM-powered geospatial agent "
+authors = [{ name = "Khuzaima Aziz" }]
+readme = "README.md"
+requires-python = ">=3.10"
+
+dependencies = [
+  "crewai",
+  "geopandas",
+  "shapely",
+  "pyproj",
+  "pydantic",
+  "folium",
+  "openai",
+  "mcp[cli]",
+  "matplotlib>=3.10.8",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[project.scripts]
+geo-agent = "geo_agent.main:main"
