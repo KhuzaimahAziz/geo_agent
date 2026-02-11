@@ -47,6 +47,3 @@ This project allows users to query Peruvian provinces or cities using natural la
 4. Change the query in the main.py file.
 
 
-## Video Link
-
-https://drive.google.com/file/d/1NFco-1oCtC-mAWiaqaRk6rvQnuDNWYxA/view?usp=sharing 
